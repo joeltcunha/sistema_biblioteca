@@ -264,7 +264,7 @@
             </div>
             <div class="form-group">
                 <label for="novoComentario">Comentário:</label>
-                <textarea name="avaliacao"id="novoComentario" class="mock-textarea" style="background-color: white; border: 1px solid #CCC;" placeholder="O que você achou desta leitura?" required></textarea>
+                <textarea name="avaliacao" id="novoComentario" class="mock-textarea" style="background-color: white; border: 1px solid #CCC;" placeholder="O que você achou desta leitura?" required></textarea>
             </div>
             <input type="hidden" name="tabela" value="Historico_Usuario_Livros">
             <input type="hidden" name="idLivro" value="<?= $livro['idLivro'] ?>">
