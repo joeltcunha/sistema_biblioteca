@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EEMLMB - Início</title>
+  <title>Sistema Bilbioteca - E.E. Maria Luiza Miranda Bastos</title>
+<!--    Style   -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+
   <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 <?php
@@ -24,36 +28,105 @@ try {
 }
 ?>
 
-<header>
-  <div class="header-left">
-    <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">
-    <h1>EEMLMB</h1>
-  </div>
-  <nav>
-    <a href="index.php">INÍCIO</a>
-    <a href="https://www.mg.gov.br/instituicao_unidade/escola-estadual-maria-luiza-miranda-bastos" target="_blank" rel="noopener noreferrer">SOBRE</a>
-    <a href="#novidades">NOVIDADES</a>
-    <a href="#top10">TOP 10</a>
-    <a href="#eventos">EVENTOS</a>
-    <a href="#categorias">CATEGORIAS</a>
-  </nav>
-  <div class="header-right">
-    <div class="user-icon">
-        <a href="processos/login.php">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </a>
+<div class="container-fluid py-3 header-logo">
+    <div class="row">
+        <div class="col-md-1">
+            <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">
+        </div>
+        <div class="col-md-9">
+            <h3>Sistema de Biblioteca</h3>
+            <h2>E.E. Maria Luiza Miranda Bastos</h2>
+        </div>
+        <div class="col-md-2">
+            <a href="processos/login.php">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+            <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank"><img src="imgs/instagram (1).png" alt="Instagram" class="header-insta"></a>
+        </div>
     </div>
-    <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank"><img src="imgs/instagram (1).png" alt="Instagram" class="header-insta"></a>
-  </div>
-</header>
+</div>
+<hr class="my-0">
+<div class="container-fluid nav-menu">
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.php">INÍCIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="https://www.mg.gov.br/instituicao_unidade/escola-estadual-maria-luiza-miranda-bastos">SOBRE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#novidades">NOVIDADES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#top10">TOP 10</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#eventos">EVENTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#categorias">CATEGORIAS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--<header>-->
+<!--    <div class="container p-2 w-100">-->
+<!--        <div class="row-col-12">-->
+<!--            <div class="col-3">-->
+<!--                <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">-->
+<!--            </div>-->
+<!--            <div class="col-9">-->
+<!--                <h1>E.E. MLMB</h1>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--    <div class="header-left">-->
+<!---->
+<!---->
+<!---->
+<!--    </div>-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="row-col-12">-->
+<!--            <div class="col-12">-->
+<!--                <nav>-->
+<!--                    <a href="index.php">INÍCIO</a>-->
+<!--                    <a href="https://www.mg.gov.br/instituicao_unidade/escola-estadual-maria-luiza-miranda-bastos" target="_blank" rel="noopener noreferrer">SOBRE</a>-->
+<!--                    <a href="#novidades">NOVIDADES</a>-->
+<!--                    <a href="#top10">TOP 10</a>-->
+<!--                    <a href="#eventos">EVENTOS</a>-->
+<!--                    <a href="#categorias">CATEGORIAS</a>-->
+<!--                </nav>-->
+<!--            </div>-->
+<!---->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--  <div class="header-right">-->
+<!--    <div class="user-icon">-->
+<!--        <a href="processos/login.php">-->
+<!--          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank"><img src="imgs/instagram (1).png" alt="Instagram" class="header-insta"></a>-->
+<!--  </div>-->
+<!--</header>-->
 
 <main>
-  <h2 class="page-title" style="margin-bottom: 15px;">Início</h2>
+  <h2 class="page-title mb-3">Início</h2>
 
   <!-- Barra de Pesquisa -->
   <div class="search-section">
-    <label>Buscar por</label>
-    <input type="text" class="search-input" placeholder="título, autor ou editora">
+    <label>Buscar por: </label>
+    <input type="text" class="search-input rounded-3" placeholder="título, autor ou editora">
     <button class="btn-blue">Pesquisar</button>
   </div>
 
@@ -63,8 +136,8 @@ try {
     <div class="books-grid">
       <!-- Card 1 -->
       <div class="book-card">
-        <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
+        <div class="book-card-title">Capitães da Areia</div>
+        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães de Areia" class="book-card-cover" width="">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -77,7 +150,7 @@ try {
       <!-- Card 2 -->
       <div class="book-card">
         <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
+        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -90,7 +163,7 @@ try {
       <!-- Card 3 -->
       <div class="book-card">
         <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
+        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -207,7 +280,7 @@ try {
       <div class="event-card">
         <div class="event-title">Exposição "Agripa Vasconcelos - 130 anos: entre sagas e memórias"</div>
         <div class="event-body">
-          <img src="imgs/evento1.jpg" alt="Exposição Agripa Vasconcelos" class="event-img">
+          <img src="imgs/exposicao_agripa_vasconcelos.jpg" alt="Exposição Agripa Vasconcelos" class="event-img">
           <div class="event-info">
             <p>A mostra apresenta aspectos da vida e da obra de Agripa Vasconcelos, reunindo memórias, narrativas e parte de sua produção literária que marcou gerações.</p>
             <p><strong>Data Inicial:</strong> 09/04/26</p>
@@ -224,7 +297,7 @@ try {
       <div class="event-card">
         <div class="event-title">17ª Noite Mineira de Museus e Bibliotecas</div>
         <div class="event-body">
-          <img src="imgs/evento2.jpg" alt="Noite Mineira de Museus" class="event-img">
+          <img src="imgs/noite_mineira_de_museus.jpg" alt="Noite Mineira de Museus" class="event-img">
           <div class="event-info">
             <p>O evento promete reunir editores, livreiros, autores consagrados e novos talentos em uma programação que inclui lançamentos, debates e palestras, fortalecendo o diálogo entre leitores e criadores.</p>
             <p><strong>Data Inicial:</strong> 18/06/26</p>
@@ -241,7 +314,7 @@ try {
       <div class="event-card">
         <div class="event-title">Feira Mineira do Livro</div>
         <div class="event-body">
-          <img src="imgs/evento3.jpg" alt="Feira Mineira do Livro" class="event-img">
+          <img src="imgs/feira_mineira_do_livro.jpg" alt="Feira Mineira do Livro" class="event-img">
           <div class="event-info">
             <p>O evento promete reunir editores, livreiros, autores consagrados e novos talentos em uma programação que inclui lançamentos, debates e palestras, fortalecendo o diálogo entre leitores e criadores.</p>
             <p><strong>Data Inicial:</strong> 17/09/25</p>
@@ -335,7 +408,7 @@ try {
     <div class="books-grid">
       <div class="book-card">
         <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
+        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -347,7 +420,7 @@ try {
 
       <div class="book-card">
         <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
+        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -359,7 +432,7 @@ try {
 
       <div class="book-card">
         <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
+        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -463,7 +536,7 @@ try {
     <div class="books-grid">
       <div class="book-card">
         <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
+        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -475,7 +548,7 @@ try {
 
       <div class="book-card">
         <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
+        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -487,7 +560,7 @@ try {
 
       <div class="book-card">
         <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
+        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -591,7 +664,7 @@ try {
     <div class="books-grid">
       <div class="book-card">
         <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
+        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -603,7 +676,7 @@ try {
 
       <div class="book-card">
         <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
+        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -615,7 +688,7 @@ try {
 
       <div class="book-card">
         <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
+        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
         <div class="book-card-details">
           <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
           <p><strong>Autor:</strong> Jorge Amado</p>
@@ -671,5 +744,7 @@ try {
   </div>
 </footer>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
 </body>
 </html>
