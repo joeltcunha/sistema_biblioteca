@@ -1,7 +1,8 @@
 <?php
+
 session_start();
 if (!isset($_SESSION['login']) || !$_SESSION['login'] || !isset($_SESSION['bibliotecaria']) || !$_SESSION['bibliotecaria']) {
-    header("Location: ../../processos/login.php");
+    header("Location: ../processos/login.php");
     exit();
 }
 

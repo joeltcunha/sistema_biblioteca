@@ -290,7 +290,7 @@ CREATE TABLE `Genero_has_Livros` (
   
  CREATE TABLE `Historico_Usuario_Livros` (
   `idHistorico` INT NOT NULL AUTO_INCREMENT,
-  `tipo_interacao` ENUM('Lido', 'Favoritado', 'Pesquisado', 'Avaliado') NOT NULL,
+  `tipo_interacao` ENUM('Lido', 'Favoritado', 'Pesquisado', 'Avaliado', 'Reservado') NOT NULL,
   `idLivro` INT NOT NULL,
   `idCadastroFuncionarios` INT,
   `idUsuario` INT,

@@ -105,6 +105,8 @@
             $stmt->execute();
             $result = $stmt->get_result();
             $livro['data_disponivel'] = $result->fetch_assoc()['data_disponivel'];
+            $livro['data_disponivel'] = new DateTime($livro['data_disponivel']);
+            $livro['data_disponivel'] = $livro['data_disponivel']->format('d/m/Y');
         }
 
         $sql = "SELECT H.nota_avaliacao, H.avaliacao, COALESCE(AL.nome, F.nome, B.nome_bibliotecaria) AS nome_usuario

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EEMLMB - Início</title>
+  <title>EEMLMB - Início</title><link rel="icon" href="../imgs/Ellipse%203.png" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,7 +12,13 @@
 include("php/includes/conexao.php");
 try {
     $conn = conectar();
-    $sql = "SELECT * FROM Livros";
+    $sql = "SELECT 
+		        L.idLivro, L.titulo, L.descricao, L.capa_url, A.nome_autor, G.nome_genero
+            FROM Livros L
+            LEFT JOIN Autor_has_Livros AL ON L.idLivro = AL.idLivro
+            LEFT JOIN Autor A ON AL.idAutor = A.idAutor
+            LEFT JOIN Genero_has_Livros GL ON L.idLivro = GL.idLivro
+            LEFT JOIN Genero G ON GL.idGenero = G.idGenero";
     $result = $conn->query($sql);
     $livros = [];
     while ($linha = $result->fetch_assoc()) {
@@ -35,7 +41,7 @@ try {
     <a href="#novidades">NOVIDADES</a>
     <a href="#top10">TOP 10</a>
     <a href="#eventos">EVENTOS</a>
-    <a href="#categorias">CATEGORIAS</a>
+    <a href="#categorias">GÊNEROS</a>
   </nav>
   <div class="header-right">
     <div class="user-icon">
@@ -61,70 +67,19 @@ try {
   <section id="novidades">
     <h3 class="section-subtitle">Novidades</h3>
     <div class="books-grid">
-      <!-- Card 1 -->
+      <?php foreach ($livros as $livro): ?>
       <div class="book-card">
-        <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
+        <div class="book-card-title"><?= $livro['titulo'] ?></div>
+        <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
         <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
+            <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+            <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+            <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+            <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
         </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
+        <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
       </div>
-
-      <!-- Card 2 -->
-      <div class="book-card">
-        <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="book-card">
-        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="book-card">
-        <div class="book-card-title">Vidas Secas</div>
-        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="book-card">
-        <div class="book-card-title">A Hora da Estrela</div>
-        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
+      <?php endforeach; ?>
     </div>
   </section>
 
@@ -132,70 +87,19 @@ try {
   <section id="top10">
     <h3 class="section-subtitle">Top 10 livros alugados</h3>
     <div class="books-grid">
-      <!-- Card 1 -->
-      <div class="book-card">
-        <div class="book-card-title">Quarto de Despejo</div>
-        <img src="imgs/quarto_de_despejo.jpg" alt="Quarto de Despejo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="book-card">
-        <div class="book-card-title">Sentimento do Mundo</div>
-        <img src="imgs/sentimento_do_mundo.jpg" alt="Sentimento do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="book-card">
-        <div class="book-card-title">Senhora</div>
-        <img src="imgs/senhora.jpg" alt="Senhora" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="book-card">
-        <div class="book-card-title">Dom Casmurro</div>
-        <img src="imgs/dom_casmurro.jpg" alt="Dom Casmurro" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="book-card">
-        <div class="book-card-title">O Cortiço</div>
-        <img src="imgs/o_cortico.jpg" alt="O Cortiço" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+            <div class="book-card">
+                <div class="book-card-title"><?= $livro['titulo'] ?></div>
+                <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+                <div class="book-card-details">
+                    <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                    <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                    <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                    <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+                </div>
+                <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+            </div>
+        <?php endforeach; ?>
     </div>
   </section>
 
@@ -257,8 +161,8 @@ try {
   </section>
 
   <!-- SEÇÃO 4: CATEGORIAS E FILTROS -->
-  <section id="categorias">
-    <select class="genre-select">
+  <section id="generos">
+    <select class="cad-input" style="width: 20%; margin-bottom: 10px" id="genero" name="genero">
       <option>Selecione o Gênero</option>
       <option>Fantasia</option>
       <option>Suspense</option>
@@ -269,385 +173,109 @@ try {
 
     <!-- Grid inicial sob o selector -->
     <div class="books-grid">
-      <div class="book-card">
-        <div class="book-card-title">A Hora da Estrela</div>
-        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">O Cortiço</div>
-        <img src="imgs/o_cortico.jpg" alt="O Cortiço" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Quarto de Despejo</div>
-        <img src="imgs/quarto_de_despejo.jpg" alt="Quarto de Despejo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Vidas Secas</div>
-        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Dom Casmurro</div>
-        <img src="imgs/dom_casmurro.jpg" alt="Dom Casmurro" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+          <div class="book-card">
+              <div class="book-card-title"><?= $livro['titulo'] ?></div>
+              <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+              <div class="book-card-details">
+                  <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                  <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                  <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                  <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+              </div>
+              <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+          </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- FANTASIA -->
     <h3 class="section-subtitle">Fantasia</h3>
     <div class="books-grid">
-      <div class="book-card">
-        <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Vidas Secas</div>
-        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">A Hora da Estrela</div>
-        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+            <div class="book-card">
+                <div class="book-card-title"><?= $livro['titulo'] ?></div>
+                <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+                <div class="book-card-details">
+                    <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                    <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                    <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                    <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+                </div>
+                <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- SUSPENSE -->
     <h3 class="section-subtitle">Suspense</h3>
     <div class="books-grid">
-      <div class="book-card">
-        <div class="book-card-title">Quarto de Despejo</div>
-        <img src="imgs/quarto_de_despejo.jpg" alt="Quarto de Despejo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Sentimento do Mundo</div>
-        <img src="imgs/sentimento_do_mundo.jpg" alt="Sentimento do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Senhora</div>
-        <img src="imgs/senhora.jpg" alt="Senhora" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Dom Casmurro</div>
-        <img src="imgs/dom_casmurro.jpg" alt="Dom Casmurro" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">O Cortiço</div>
-        <img src="imgs/o_cortico.jpg" alt="O Cortiço" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+            <div class="book-card">
+                <div class="book-card-title"><?= $livro['titulo'] ?></div>
+                <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+                <div class="book-card-details">
+                    <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                    <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                    <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                    <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+                </div>
+                <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- TERROR -->
     <h3 class="section-subtitle">Terror</h3>
     <div class="books-grid">
-      <div class="book-card">
-        <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Vidas Secas</div>
-        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">A Hora da Estrela</div>
-        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+            <div class="book-card">
+                <div class="book-card-title"><?= $livro['titulo'] ?></div>
+                <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+                <div class="book-card-details">
+                    <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                    <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                    <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                    <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+                </div>
+                <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- FINANÇAS -->
     <h3 class="section-subtitle">Finanças</h3>
     <div class="books-grid">
-      <div class="book-card">
-        <div class="book-card-title">Quarto de Despejo</div>
-        <img src="imgs/quarto_de_despejo.jpg" alt="Quarto de Despejo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Sentimento do Mundo</div>
-        <img src="imgs/sentimento_do_mundo.jpg" alt="Sentimento do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Senhora</div>
-        <img src="imgs/senhora.jpg" alt="Senhora" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Dom Casmurro</div>
-        <img src="imgs/dom_casmurro.jpg" alt="Dom Casmurro" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">O Cortiço</div>
-        <img src="imgs/o_cortico.jpg" alt="O Cortiço" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+            <div class="book-card">
+                <div class="book-card-title"><?= $livro['titulo'] ?></div>
+                <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+                <div class="book-card-details">
+                    <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                    <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                    <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                    <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+                </div>
+                <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- AUTOAJUDA -->
     <h3 class="section-subtitle">Autoajuda</h3>
     <div class="books-grid">
-      <div class="book-card">
-        <div class="book-card-title">Capitães de Areia</div>
-        <img src="imgs/capitaes_de_areia.jpg" alt="Capitães de Areia" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sobrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">Vidas Secas</div>
-        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
-
-      <div class="book-card">
-        <div class="book-card-title">A Hora da Estrela</div>
-        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-reservar-card">Quero pegar</a>
-      </div>
+        <?php foreach ($livros as $livro): ?>
+            <div class="book-card">
+                <div class="book-card-title"><?= $livro['titulo'] ?></div>
+                <img src="<?= $livro['capa_url'] ?>" alt="Capitães de Areia" class="book-card-cover">
+                <div class="book-card-details">
+                    <p><strong>Autor:</strong> <?= $livro['nome_autor'] ?></p>
+                    <p><strong>Gênero:</strong> <?= $livro['nome_genero'] ?></p>
+                    <p class="desc">Descrição: <?= $livro['descricao'] ?></p>
+                    <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="read-more">Leia mais...</a>
+                </div>
+                <a href=<?="usuarios/visualizarLivro.php?idLivro=" . $livro['idLivro']?> class="btn-cyan">Quero pegar</a>
+            </div>
+        <?php endforeach; ?>
     </div>
   </section>
 </main>
