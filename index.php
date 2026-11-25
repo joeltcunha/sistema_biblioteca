@@ -38,7 +38,9 @@ try {
             </div>
             <div class="col-md-2 align-content-center">
                 <a href="processos/login.php" class="p-2">
-                    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </a>
                 <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank" class="p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-instagram" viewBox="0 0 16 16">
@@ -51,10 +53,10 @@ try {
     <hr class="my-0">
     <nav class="navbar navbar-expand-lg nav-menu">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php">Home</a>
@@ -77,12 +79,12 @@ try {
                         <a class="nav-link" href="#categorias">Gêneros</a>
                     </li>
                 </ul>
-                <div class="row align-items-center ">
+                <div class="row align-items-end">
                     <div class="col-auto search">
                         <label for="inputSearch" class="col-form-label">Pesquisar</label>
                     </div>
                     <div class="col-auto">
-                        <input type="search" id="inputSearch" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="search" id="inputSearch" class="form-control" placeholder="Título, nome ou autor">
                     </div>
                 </div>
 
@@ -93,39 +95,53 @@ try {
 
 <main>
 <!--    CARROSSEL-->
-    <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselAutoplaying" class="carousel slide mt-3 bg-secondary" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="imgs/library_01.jpg" class="d-block w-100" alt="...">
+                <img src="imgs/library_01.jpg" class="d-block img-fluid rounded mx-auto" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="imgs/library_02.jpg" class="d-block w-100" alt="...">
+                <img src="imgs/library_02.jpg" class="d-block img-fluid rounded mx-auto" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="imgs/library_03.jpg" class="d-block w-100" alt="...">
+                <img src="imgs/library_03.jpg" class="d-block img-fluid rounded mx-auto" alt="...">
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
+        <button class="carousel-control-prev btn btn-dark" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <button class="carousel-control-next btn-danger" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon btn-danger" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 
   <!-- SEÇÃO 1: NOVIDADES -->
-  <section id="novidades">
+  <section id="novidades" class="novidades">
     <h3 class="section-subtitle">Novidades</h3>
       <div class="container-fluid">
-          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
+          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3">
               <div class="col">
                   <div class="card">
-                      <img src="imgs/capitaes_da_areia.jpg" class="card-img-top" alt="...">
+                      <img src="imgs/capitaes_da_areia.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">Capitães da Areia</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                      </div>
+                      <div class="card-footer">
+                          <a href="">
+                              <small class="text-body-secondary">Last updated 3 mins ago</small>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/sovrevivendo_ao_racismo.jpg" class="card-img-top m-auto py-2" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Sobrevivendo ao racismo</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -134,10 +150,10 @@ try {
               </div>
               <div class="col">
                   <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">Ideias para adiar o fim do mundo</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -146,10 +162,10 @@ try {
               </div>
               <div class="col">
                   <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="imgs/vidas_secas.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">Vidas secas</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -158,22 +174,10 @@ try {
               </div>
               <div class="col">
                   <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="imgs/a_hora_da_estrela.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">A hora da estrela</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
