@@ -102,11 +102,14 @@ main {
    PÁGINA VISUALIZAR LIVRO (SEÇÃO DO LIVRO & CAMPOS)
    -------------------------------------------------------------------------- */
 .novidades img{
-    width: 250px;
+    width: 280px;
     height: auto;
     padding: 5rem 0;
 }
-
+.novidades_p{
+    line-height: 1.2rem;
+    margin-bottom: 5px;
+}
 
 /*!* --------------------------------------------------------------------------*/
 /*   PÁGINA VISUALIZAR LIVRO (SEÇÃO DO LIVRO & CAMPOS)*/

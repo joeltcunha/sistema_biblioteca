@@ -127,12 +127,13 @@ try {
                       <img src="imgs/capitaes_da_areia.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
                           <h5 class="card-title">Capitães da Areia</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Jorge Amado</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
                       </div>
                       <div class="card-footer">
-                          <a href="">
-                              <small class="text-body-secondary">Last updated 3 mins ago</small>
-                          </a>
+                          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
+                          <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
                       </div>
                   </div>
               </div>
@@ -186,10 +187,10 @@ try {
               </div>
               <div class="col">
                   <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="imgs/senhora.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">Senhora</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique.</p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -198,10 +199,10 @@ try {
               </div>
               <div class="col">
                   <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="imgs/quarto_de_despejo.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">Quarto de despejo</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique.</p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -210,10 +211,10 @@ try {
               </div>
               <div class="col">
                   <div class="card">
-                      <img src="..." class="card-img-top" alt="...">
+                      <img src="imgs/o_mulato.jpg" class="card-img-top m-auto py-2" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title">O mulato</h5>
+                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique.</p>
                       </div>
                       <div class="card-footer">
                           <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -222,31 +223,9 @@ try {
               </div>
           </div>
       </div>
-      <div class="card-group">
 
-          <div class="card">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <div class="card-footer">
-                  <small class="text-body-secondary">Last updated 3 mins ago</small>
-              </div>
-          </div>
-          <div class="card">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              </div>
-              <div class="card-footer">
-                  <small class="text-body-secondary">Last updated 3 mins ago</small>
-              </div>
-          </div>
-      </div>
 <!--    <div class="books-grid">-->
-<!--      Card 1 -->
+<!--      Card 1-->
 <!--      <div class="book-card">-->
 <!--        <div class="book-card-title">Capitães da Areia</div>-->
 <!--        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães da Areia" class="book-card-cover" width="100">-->
@@ -258,7 +237,7 @@ try {
 <!--        </div>-->
 <!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
 <!--      </div>-->
-<!---->
+
 <!--      Card 2 -->
 <!--      <div class="book-card">-->
 <!--        <div class="book-card-title">Sobrevivendo ao Racismo</div>-->
