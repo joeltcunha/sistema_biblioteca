@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema Bilbioteca - E.E. Maria Luiza Miranda Bastos</title>
-<!--    Style   -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="css/style.css">
-
-</head>
-<body>
 <?php
 
 include("php/includes/conexao.php");
@@ -27,186 +14,299 @@ try {
     echo "Erro: " . $e->getMessage();
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Bilbioteca - E.E. Maria Luiza Miranda Bastos</title>
+<!--    Style   -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 
-<div class="container-fluid py-3 header-logo">
-    <div class="row">
-        <div class="col-md-1">
-            <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">
-        </div>
-        <div class="col-md-9">
-            <h3>Sistema de Biblioteca</h3>
-            <h2>E.E. Maria Luiza Miranda Bastos</h2>
-        </div>
-        <div class="col-md-2 align-content-center">
-            <a href="processos/login.php" class="p-2">
+</head>
+<body>
+<header>
+    <div class="container-fluid p-4 header-logo">
+        <div class="row">
+            <div class="col-md-1 px-2">
+                <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">
+            </div>
+            <div class="col-md-9 px-4">
+                <h3>Sistema de Biblioteca</h3>
+                <h2>E.E. Maria Luiza Miranda Bastos</h2>
+            </div>
+            <div class="col-md-2 align-content-center">
+                <a href="processos/login.php" class="p-2">
                     <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </a>
-            <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank" class="p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-instagram" viewBox="0 0 16 16">
-                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                </svg>
-            </a>
+                </a>
+                <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank" class="p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-instagram" viewBox="0 0 16 16">
+                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
-</div>
-<hr class="my-0">
-<div class="container-fluid nav-menu">
-    <nav class="navbar navbar-expand-lg">
+    <hr class="my-0">
+    <nav class="navbar navbar-expand-lg nav-menu">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php">INÍCIO</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="https://www.mg.gov.br/instituicao_unidade/escola-estadual-maria-luiza-miranda-bastos">SOBRE</a>
+                        <a class="nav-link" href="#">Sobre</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#novidades">NOVIDADES</a>
+                        <a class="nav-link" href="#novidades">
+                            Novidades
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#top10">TOP 10</a>
+                        <a class="nav-link" href="#top10">Top 10</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#eventos">EVENTOS</a>
+                        <a class="nav-link" href="#eventos">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#categorias">CATEGORIAS</a>
+                        <a class="nav-link" href="#categorias">Gêneros</a>
                     </li>
                 </ul>
+                <div class="row align-items-center ">
+                    <div class="col-auto search">
+                        <label for="inputSearch" class="col-form-label">Pesquisar</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="search" id="inputSearch" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+
             </div>
-            <form class="d-flex" role="search">
-                <input class="form-control p-2 me-1" type="search" placeholder="Título, autor ou editora" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-            </form>
         </div>
     </nav>
-</div>
-<!--<header>-->
-<!--    <div class="container p-2 w-100">-->
-<!--        <div class="row-col-12">-->
-<!--            <div class="col-3">-->
-<!--                <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">-->
-<!--            </div>-->
-<!--            <div class="col-9">-->
-<!--                <h1>E.E. MLMB</h1>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--    <div class="header-left">-->
-<!---->
-<!---->
-<!---->
-<!--    </div>-->
-<!--    <div class="container-fluid">-->
-<!--        <div class="row-col-12">-->
-<!--            <div class="col-12">-->
-<!--                <nav>-->
-<!--                    <a href="index.php">INÍCIO</a>-->
-<!--                    <a href="https://www.mg.gov.br/instituicao_unidade/escola-estadual-maria-luiza-miranda-bastos" target="_blank" rel="noopener noreferrer">SOBRE</a>-->
-<!--                    <a href="#novidades">NOVIDADES</a>-->
-<!--                    <a href="#top10">TOP 10</a>-->
-<!--                    <a href="#eventos">EVENTOS</a>-->
-<!--                    <a href="#categorias">CATEGORIAS</a>-->
-<!--                </nav>-->
-<!--            </div>-->
-<!---->
-<!--        </div>-->
-<!--    </div>-->
-<!---->
-<!--  <div class="header-right">-->
-<!--    <div class="user-icon">-->
-<!--        <a href="processos/login.php">-->
-<!--          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>-->
-<!--        </a>-->
-<!--    </div>-->
-<!--    <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank"><img src="imgs/instagram (1).png" alt="Instagram" class="header-insta"></a>-->
-<!--  </div>-->
-<!--</header>-->
+</header>
 
 <main>
-  <h2 class="page-title mb-3">Início</h2>
-
-  <!-- Barra de Pesquisa -->
-  <div class="search-section">
-    <label>Buscar por: </label>
-    <input type="text" class="search-input rounded-3" placeholder="título, autor ou editora">
-    <button class="btn-blue">Pesquisar</button>
-  </div>
+<!--    CARROSSEL-->
+    <div id="carouselAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="imgs/library_01.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/library_02.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/library_03.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
   <!-- SEÇÃO 1: NOVIDADES -->
   <section id="novidades">
     <h3 class="section-subtitle">Novidades</h3>
-    <div class="books-grid">
-      <!-- Card 1 -->
-      <div class="book-card">
-        <div class="book-card-title">Capitães da Areia</div>
-        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães de Areia" class="book-card-cover" width="">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
+      <div class="container-fluid">
+          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-3">
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/capitaes_da_areia.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="..." class="card-img-top" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      </div>
+                      <div class="card-footer">
+                          <small class="text-body-secondary">Last updated 3 mins ago</small>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
+      <div class="card-group">
 
-      <!-- Card 2 -->
-      <div class="book-card">
-        <div class="book-card-title">Sobrevivendo ao Racismo</div>
-        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
+          <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+              </div>
+              <div class="card-footer">
+                  <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+          </div>
+          <div class="card">
+              <img src="..." class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+              </div>
+              <div class="card-footer">
+                  <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+          </div>
       </div>
-
-      <!-- Card 3 -->
-      <div class="book-card">
-        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>
-        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="book-card">
-        <div class="book-card-title">Vidas Secas</div>
-        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="book-card">
-        <div class="book-card-title">A Hora da Estrela</div>
-        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-      </div>
-    </div>
+<!--    <div class="books-grid">-->
+<!--      Card 1 -->
+<!--      <div class="book-card">-->
+<!--        <div class="book-card-title">Capitães da Areia</div>-->
+<!--        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães da Areia" class="book-card-cover" width="100">-->
+<!--        <div class="book-card-details">-->
+<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
+<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
+<!--          <p><strong>Gênero:</strong> Romance</p>-->
+<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
+<!--        </div>-->
+<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
+<!--      </div>-->
+<!---->
+<!--      Card 2 -->
+<!--      <div class="book-card">-->
+<!--        <div class="book-card-title">Sobrevivendo ao Racismo</div>-->
+<!--        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">-->
+<!--        <div class="book-card-details">-->
+<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
+<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
+<!--          <p><strong>Gênero:</strong> Romance</p>-->
+<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
+<!--        </div>-->
+<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
+<!--      </div>-->
+<!---->
+<!--      Card 3 -->
+<!--      <div class="book-card">-->
+<!--        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>-->
+<!--        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">-->
+<!--        <div class="book-card-details">-->
+<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
+<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
+<!--          <p><strong>Gênero:</strong> Romance</p>-->
+<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
+<!--        </div>-->
+<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
+<!--      </div>-->
+<!---->
+<!--       Card 4 -->
+<!--      <div class="book-card">-->
+<!--        <div class="book-card-title">Vidas Secas</div>-->
+<!--        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">-->
+<!--        <div class="book-card-details">-->
+<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
+<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
+<!--          <p><strong>Gênero:</strong> Romance</p>-->
+<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
+<!--        </div>-->
+<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
+<!--      </div>-->
+<!---->
+<!--      Card 5 -->
+<!--      <div class="book-card">-->
+<!--        <div class="book-card-title">A Hora da Estrela</div>-->
+<!--        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">-->
+<!--        <div class="book-card-details">-->
+<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
+<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
+<!--          <p><strong>Gênero:</strong> Romance</p>-->
+<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
+<!--        </div>-->
+<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
+<!--      </div>-->
+<!--    </div>-->
   </section>
 
   <!-- SEÇÃO 2: TOP 10 LIVROS ALUGADOS -->
