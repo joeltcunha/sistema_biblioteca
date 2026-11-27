@@ -62,7 +62,7 @@ header {
     color: #ffffff;
     text-decoration: none;
     font-family: var(--font-menu);
-    font-size: 24px;
+    font-size: 1rem;
     text-transform: uppercase;
     transition: opacity 0.2s;
     width: 150px;
@@ -73,7 +73,7 @@ header {
 }
 .search label{
     font-family: var(--font-menu);
-    font-size: 24px;
+    font-size: 1rem;
     color: #ffffff;
     text-transform: uppercase;
 }
@@ -109,8 +109,12 @@ main {
 .novidades_p{
     line-height: 1.2rem;
     margin-bottom: 5px;
+    font-size: 0.8rem;
 }
 
+.footer-card{
+    background-color: #fbfbf0;
+}
 /*!* --------------------------------------------------------------------------*/
 /*   PÁGINA VISUALIZAR LIVRO (SEÇÃO DO LIVRO & CAMPOS)*/
 /*   -------------------------------------------------------------------------- *!*/

@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Devolução de Livro</title>
-  <link rel="icon" href="../imgs/Ellipse%203.png" type="image/x-icon">
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body class="body-processo">
 <?php
 session_start();
 if (!isset($_SESSION['login']) || !$_SESSION['login'] || !isset($_SESSION['bibliotecaria']) || !$_SESSION['bibliotecaria']) {
@@ -28,6 +18,18 @@ try {
     echo "Erro: " . $e->getMessage();
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="../imgs/Ellipse%203.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body class="body-processo">
+
 <header>
   <div class="header-left">
     <img src="../imgs/Ellipse%203.png" alt="Logo EEMLMB" class="logo">

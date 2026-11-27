@@ -3,365 +3,267 @@
 include("php/includes/conexao.php");
 try {
     $conn = conectar();
-    $sql = "SELECT * FROM Livros";
-    $result = $conn->query($sql);
-    $livros = [];
-    while ($linha = $result->fetch_assoc()) {
-        $livros [] = $linha;
-    }
-    $conn->close();
-} catch (Exception $e) {
-    echo "Erro: " . $e->getMessage();
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistema Bilbioteca - E.E. Maria Luiza Miranda Bastos</title>
-<!--    Style   -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-
+<?php include "php/includes/head.php"; ?>
+    <title>Sistema Bilbioteca - E.E. Maria Luiza Miranda Bastos</title>
 </head>
 <body>
-<header>
-    <div class="container-fluid p-4 header-logo">
-        <div class="row">
-            <div class="col-md-1 px-2">
-                <img src="imgs/Ellipse 3.png" alt="Logo EEMLMB" class="logo">
-            </div>
-            <div class="col-md-9 px-4">
-                <h3>Sistema de Biblioteca</h3>
-                <h2>E.E. Maria Luiza Miranda Bastos</h2>
-            </div>
-            <div class="col-md-2 align-content-center">
-                <a href="processos/login.php" class="p-2">
-                    <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/eemarialuizaoficial/" target="_blank" class="p-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-instagram" viewBox="0 0 16 16">
-                        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
-    <hr class="my-0">
-    <nav class="navbar navbar-expand-lg nav-menu">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#novidades">
-                            Novidades
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#top10">Top 10</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#eventos">Eventos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#categorias">Gêneros</a>
-                    </li>
-                </ul>
-                <div class="row align-items-end">
-                    <div class="col-auto search">
-                        <label for="inputSearch" class="col-form-label">Pesquisar</label>
-                    </div>
-                    <div class="col-auto">
-                        <input type="search" id="inputSearch" class="form-control" placeholder="Título, nome ou autor">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </nav>
-</header>
+<?php include "php/includes/header_inicial.php"?>
 
 <main>
 <!--    CARROSSEL-->
-    <div id="carouselAutoplaying" class="carousel slide mt-3 bg-secondary" data-bs-ride="carousel">
+    <div id="carouselAutoplaying" class="carousel slide mt-1 carousel-dark" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="imgs/library_01.jpg" class="d-block img-fluid rounded mx-auto" alt="...">
+                <img src="imgs/library_05.jpg" class="d-block img-fluid rounded mx-auto w-100 h-50" alt="..." >
             </div>
             <div class="carousel-item">
-                <img src="imgs/library_02.jpg" class="d-block img-fluid rounded mx-auto" alt="...">
+                <img src="imgs/library_06.jpg" class="d-block img-fluid rounded mx-auto w-100" alt="..." >
             </div>
             <div class="carousel-item">
-                <img src="imgs/library_03.jpg" class="d-block img-fluid rounded mx-auto" alt="...">
+                <img src="imgs/library_07.jpg" class="d-block img-fluid rounded mx-auto w-100" alt="..." >
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/library_04.jpg" class="d-block img-fluid rounded mx-auto w-100" alt="...">
             </div>
         </div>
-        <button class="carousel-control-prev btn btn-dark" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next btn-danger" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
-            <span class="carousel-control-next-icon btn-danger" aria-hidden="true"></span>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 
   <!-- SEÇÃO 1: NOVIDADES -->
-  <section id="novidades" class="novidades">
-    <h3 class="section-subtitle">Novidades</h3>
-      <div class="container-fluid">
-          <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3">
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/capitaes_da_areia.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Capitães da Areia</h5>
-                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
-                          <p class="novidades_p"><strong>Autor: </strong>Jorge Amado</p>
-                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
-                      </div>
-                      <div class="card-footer">
-                          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-                          <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/sovrevivendo_ao_racismo.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Sobrevivendo ao racismo</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Ideias para adiar o fim do mundo</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/vidas_secas.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Vidas secas</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/a_hora_da_estrela.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">A hora da estrela</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/senhora.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Senhora</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique.</p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/quarto_de_despejo.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">Quarto de despejo</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique.</p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
-              <div class="col">
-                  <div class="card">
-                      <img src="imgs/o_mulato.jpg" class="card-img-top m-auto py-2" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">O mulato</h5>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique.</p>
-                      </div>
-                      <div class="card-footer">
-                          <small class="text-body-secondary">Last updated 3 mins ago</small>
-                      </div>
-                  </div>
-              </div>
+    <section id="novidades" class="novidades">
+        <h3 class="section-subtitle">Novidades</h3>
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-5 g-3">
+    <?php
+
+    $sql = "select AL.idAutor, AL.idLivro, L.idLivro, L.titulo, A.nomeAutor, ED.nome_editora, L.capa_url
+            from autor_has_livros AL
+            inner join livros L on AL.idLivro = L.idLivro
+            inner join autor A on AL.idAutor = A.idAutor
+            inner join editora ED on ED.idEditora = L.idEditora
+            where L.status = '2' limit 10;";
+
+
+    $result = $conn->query($sql);
+    $livros = [];
+    if ($result->num_rows > 0) {
+        while ($linha = $result->fetch_assoc()) {
+            $livros [] = $linha;
+
+            ?>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="<?php echo $linha['capa_url'] ?>" class="card-img-top img-fluid m-auto py-2" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $linha['titulo'] ?></h5>
+                        <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                        <p class="novidades_p"><strong>Autor: </strong><?php echo $linha['nomeAutor'] ?></p>
+                        <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                        <p class="novidades_p"><strong>Id Livro: </strong><?php echo $linha['idLivro'] ?></p>
+                    </div>
+                    <div class="card-footer footer-card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item footer-card">
+                                <a href="usuarios/visualizarLivro.php" class="btn w-100 m-0 p-1" role="button" data-bs-toggle="button" aria-pressed="true"><p>Leia mais...</p></a>
+                            </li>
+                            <li class="list-group-item footer-card">
+                                <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto p-1"><p>Quero reservar</p></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+<?php
+        }
+    }
+    $conn->close();
+    } catch (Exception $e) {
+        echo "Erro: " . $e->getMessage();
+    }
+    ?>
           </div>
       </div>
-
-<!--    <div class="books-grid">-->
-<!--      Card 1-->
-<!--      <div class="book-card">-->
-<!--        <div class="book-card-title">Capitães da Areia</div>-->
-<!--        <img src="imgs/capitaes_da_areia.jpg" alt="Capitães da Areia" class="book-card-cover" width="100">-->
-<!--        <div class="book-card-details">-->
-<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
-<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
-<!--          <p><strong>Gênero:</strong> Romance</p>-->
-<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
-<!--        </div>-->
-<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
-<!--      </div>-->
-
-<!--      Card 2 -->
-<!--      <div class="book-card">-->
-<!--        <div class="book-card-title">Sobrevivendo ao Racismo</div>-->
-<!--        <img src="imgs/sovrevivendo_ao_racismo.jpg" alt="Sobrevivendo ao Racismo" class="book-card-cover">-->
-<!--        <div class="book-card-details">-->
-<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
-<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
-<!--          <p><strong>Gênero:</strong> Romance</p>-->
-<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
-<!--        </div>-->
-<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
-<!--      </div>-->
-<!---->
-<!--      Card 3 -->
-<!--      <div class="book-card">-->
-<!--        <div class="book-card-title">Ideias para Adiar o Fim do Mundo</div>-->
-<!--        <img src="imgs/ideias_para_adiar_o_fim_do_mundo.jpg" alt="Ideias para Adiar o Fim do Mundo" class="book-card-cover">-->
-<!--        <div class="book-card-details">-->
-<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
-<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
-<!--          <p><strong>Gênero:</strong> Romance</p>-->
-<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
-<!--        </div>-->
-<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
-<!--      </div>-->
-<!---->
-<!--       Card 4 -->
-<!--      <div class="book-card">-->
-<!--        <div class="book-card-title">Vidas Secas</div>-->
-<!--        <img src="imgs/vidas_secas.jpg" alt="Vidas Secas" class="book-card-cover">-->
-<!--        <div class="book-card-details">-->
-<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
-<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
-<!--          <p><strong>Gênero:</strong> Romance</p>-->
-<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
-<!--        </div>-->
-<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
-<!--      </div>-->
-<!---->
-<!--      Card 5 -->
-<!--      <div class="book-card">-->
-<!--        <div class="book-card-title">A Hora da Estrela</div>-->
-<!--        <img src="imgs/a_hora_da_estrela.jpg" alt="A Hora da Estrela" class="book-card-cover">-->
-<!--        <div class="book-card-details">-->
-<!--          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>-->
-<!--          <p><strong>Autor:</strong> Jorge Amado</p>-->
-<!--          <p><strong>Gênero:</strong> Romance</p>-->
-<!--          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>-->
-<!--        </div>-->
-<!--        <a href="usuarios/visualizarLivro.php" class="btn-cyan">Quero pegar</a>-->
-<!--      </div>-->
-<!--    </div>-->
   </section>
 
   <!-- SEÇÃO 2: TOP 10 LIVROS ALUGADOS -->
   <section id="top10">
     <h3 class="section-subtitle">Top 10 livros alugados</h3>
-    <div class="books-grid">
-      <!-- Card 1 -->
-      <div class="book-card">
-        <div class="book-card-title">Quarto de Despejo</div>
-        <img src="imgs/quarto_de_despejo.jpg" alt="Quarto de Despejo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
+      <div class="container-fluid">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-5 g-3">
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/quarto_de_despejo.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Quarto de despejo</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Carolina Maria de Jesus</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/dom_casmurro.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Dom Casmurro</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Machado de Assis</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/asMelhoresHistoriasDeMitologia.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">As melhores histórias de mitologia</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>A.S. Francini</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Mitologia</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/fabulasEParabolasAprendendoComAVida.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Fábulas e parábolas - Aprendendo com a vida</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Adailton Altoé</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Mitologia</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/manonLescaut.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Manon Lescaut</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Abade Prevost</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/o_sobrevivente_quer_morrer_no_final.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">O sobrevivente quer morrer no final</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Adam Silveira</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/pelos_caminhos_de_minha_vida.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Pelos caminhos da minha vida</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>A.J. Cronin</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Biografia</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/sentimento_do_mundo.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">Sentimento do mundo</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Carlos Drummond de Andrade</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/a_hora_da_estrela.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">A hora da estrela</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Clarice Lispector</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="card">
+                      <img src="imgs/o_cortico.jpg" class="card-img-top img-fluid m-auto" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">O cortiço</h5>
+                          <p class="card-text novidades_p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus ullamcorper tortor, sed dictum diam feugiat at. Morbi dapibus vel quam et maximus. Vivamus ut justo eget turpis tempor tristique. </p>
+                          <p class="novidades_p"><strong>Autor: </strong>Aluisio Azevedo</p>
+                          <p class="novidades_p"><strong>Gênero: </strong>Romance</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item bg-warning-subtle">
+                              <a href="usuarios/visualizarLivro.php/" class="btn w-100 m-auto"><p>Quero reservar</p></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
       </div>
-
-      <!-- Card 2 -->
-      <div class="book-card">
-        <div class="book-card-title">Sentimento do Mundo</div>
-        <img src="imgs/sentimento_do_mundo.jpg" alt="Sentimento do Mundo" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="book-card">
-        <div class="book-card-title">Senhora</div>
-        <img src="imgs/senhora.jpg" alt="Senhora" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="book-card">
-        <div class="book-card-title">Dom Casmurro</div>
-        <img src="imgs/dom_casmurro.jpg" alt="Dom Casmurro" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="book-card">
-        <div class="book-card-title">O Cortiço</div>
-        <img src="imgs/o_cortico.jpg" alt="O Cortiço" class="book-card-cover">
-        <div class="book-card-details">
-          <p class="desc">Descrição: Capitães da Areia, de Jorge Amado, retrata o cotidiano de meninos de rua em Salvador. Unidos pela sobrevivência, eles praticam furtos, enfrentam preconceitos e buscam liberdade em uma sociedade desigual.</p>
-          <p><strong>Autor:</strong> Jorge Amado</p>
-          <p><strong>Gênero:</strong> Romance</p>
-          <a href="usuarios/visualizarLivro.php" class="read-more">Leia mais...</a>
-        </div>
-        <a href="usuarios/visualizarLivro.php" class="btn-purple-card">Quero pegar</a>
-      </div>
-    </div>
-  </section>
 
   <!-- SEÇÃO 3: EVENTOS -->
   <section id="eventos">
@@ -423,12 +325,12 @@ try {
   <!-- SEÇÃO 4: CATEGORIAS E FILTROS -->
   <section id="categorias">
     <select class="genre-select">
-      <option>Selecione o Gênero</option>
-      <option>Fantasia</option>
-      <option>Suspense</option>
-      <option>Terror</option>
-      <option>Finanças</option>
-      <option>Autoajuda</option>
+      <option value="1">Selecione o Gênero</option>
+      <option value="2">Fantasia</option>
+      <option value="3">Suspense</option>
+      <option value="4">Terror</option>
+      <option value="5">Finanças</option>
+      <option value="6">Autoajuda</option>
     </select>
 
     <!-- Grid inicial sob o selector -->

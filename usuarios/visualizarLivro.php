@@ -1,3 +1,125 @@
+<?php
+session_start();
+if (isset($_SESSION['login']) && $_SESSION['login']) {
+    $login = true;
+    if (isset($_SESSION['aluno']) && $_SESSION['aluno']) {
+        $idUsuario = $_SESSION['idUsuario'];
+    } elseif (isset($_SESSION['funcionario']) && $_SESSION['funcionario']) {
+        $idUsuario = $_SESSION['idFuncionario'];
+    } elseif (isset($_SESSION['bibliotecaria']) && $_SESSION['bibliotecaria']) {
+        $idUsuario = $_SESSION['idBibliotecaria'];
+    } else {
+        $login = false;
+    }
+} else {
+    $login = false;
+}
+
+include '../php/includes/conexao.php';
+
+try {
+    if (!isset($_GET['idLivro'])) {
+        die("ID do livro não fornecido.");
+    }
+
+
+    $idLivro = $_GET['idLivro'];
+    $conn = conectar();
+    $sql = "SELECT 
+                    L.*,
+                    E.nome_editora,
+                    UF.uf
+                FROM livros L
+                LEFT JOIN editora E ON L.idEditora = E.idEditora
+                LEFT JOIN uf ON L.idUF = UF.idUF
+                WHERE L.idLivro = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idLivro);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $livro = $result->fetch_assoc();
+    if (!$livro) {
+        throw new Exception("Livro não encontrado.");
+    }
+
+    $sql = "SELECT nome_autor FROM Autor WHERE idAutor IN (SELECT idAutor FROM Autor_has_Livros WHERE idLivro = ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idLivro);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $autores = [];
+    while ($linha = $result->fetch_assoc()) {
+        $autores [] = $linha;
+    }
+
+    $sql = "SELECT nome_genero FROM Genero WHERE idGenero IN (SELECT idGenero FROM Genero_has_Livros WHERE idLivro = ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idLivro);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $generos = [];
+    while ($linha = $result->fetch_assoc()) {
+        $generos [] = $linha;
+    }
+
+    $sql ="SELECT nome_tradutor FROM Tradutor WHERE idTradutor IN (SELECT idTradutor FROM Tradutor_has_Livros WHERE idLivro = ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idLivro);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $tradutores = [];
+    while ($linha = $result->fetch_assoc()) {
+        $tradutores [] = $linha;
+    }
+    if (empty($tradutores)) {
+        $tradutor = false;
+    } else {
+        $tradutor = true;
+    }
+
+    $sql = "SELECT COUNT(idEmprestimoLivro) FROM emprestimoLivro WHERE idLivro = ? AND data_devolucao_real IS NULL";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idLivro);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $quantidade_emprestimos = $result->fetch_assoc()['COUNT(idEmprestimoLivro)'];
+    if($quantidade_emprestimos != null){
+        $quantidade_disponivel = $livro['quantidade'] - $quantidade_emprestimos;
+    } else {
+        $quantidade_disponivel = $livro['quantidade'];
+    }
+    $livro['quantidade_disponivel'] = $quantidade_disponivel;
+
+    if($livro['quantidade_disponivel'] <= 0) {
+        $sql = "SELECT MIN(data_devolucao_prevista) AS data_disponivel FROM emprestimoLivro WHERE idLivro = ? AND data_devolucao_real IS NULL";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $idLivro);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $livro['data_disponivel'] = $result->fetch_assoc()['data_disponivel'];
+    }
+
+    $sql = "SELECT H.nota_avaliacao, H.avaliacao, COALESCE(AL.nome, F.nome, B.nome_bibliotecaria) AS nome_usuario
+                FROM Historico_Usuario_Livros H
+                LEFT JOIN CadastroAlunos AL ON H.idUsuario = AL.idUsuario
+                LEFT JOIN CadastroFuncionarios F ON H.idCadastroFuncionarios = F.idCadastroFuncionarios
+                LEFT JOIN CadastroBibliotecarias B ON H.idCadastroBibliotecarias = B.idCadastroBibliotecarias
+                WHERE idLivro = ? AND nota_avaliacao IS NOT NULL";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idLivro);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $avaliacoes = [];
+    while ($linha = $result->fetch_assoc()) {
+        $avaliacoes [] = $linha;
+    }
+
+    $conn->close();
+    $stmt->close();
+} catch (Exception $e) {
+    echo "Erro: " . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,127 +129,7 @@
     <link rel="icon" href="../imgs/Ellipse%203.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<?php
-    session_start();
-    if (isset($_SESSION['login']) && $_SESSION['login']) {
-        $login = true;
-        if (isset($_SESSION['aluno']) && $_SESSION['aluno']) {
-            $idUsuario = $_SESSION['idUsuario'];
-        } elseif (isset($_SESSION['funcionario']) && $_SESSION['funcionario']) {
-            $idUsuario = $_SESSION['idFuncionario'];
-        } elseif (isset($_SESSION['bibliotecaria']) && $_SESSION['bibliotecaria']) {
-            $idUsuario = $_SESSION['idBibliotecaria'];
-        } else {
-            $login = false;
-        }
-    } else {
-        $login = false;
-    }
 
-    include '../php/includes/conexao.php';
-    try {
-        if (!isset($_GET['idLivro'])) {
-            die("ID do livro não fornecido.");
-        }
-
-        $idLivro = $_GET['idLivro'];
-
-        $conn = conectar();
-        $sql = "SELECT 
-                    L.*,
-                    E.nome_editora,
-                    UF.uf
-                FROM Livros L
-                LEFT JOIN Editora E ON L.idEditora = E.idEditora
-                LEFT JOIN UF ON L.idUF = UF.idUF
-                WHERE L.idLivro = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idLivro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $livro = $result->fetch_assoc();
-        if (!$livro) {
-            throw new Exception("Livro não encontrado.");
-        }
-
-        $sql = "SELECT nome_autor FROM Autor WHERE idAutor IN (SELECT idAutor FROM Autor_has_Livros WHERE idLivro = ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idLivro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $autores = [];
-        while ($linha = $result->fetch_assoc()) {
-            $autores [] = $linha;
-        }
-
-        $sql = "SELECT nome_genero FROM Genero WHERE idGenero IN (SELECT idGenero FROM Genero_has_Livros WHERE idLivro = ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idLivro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $generos = [];
-        while ($linha = $result->fetch_assoc()) {
-            $generos [] = $linha;
-        }
-
-        $sql ="SELECT nome_tradutor FROM Tradutor WHERE idTradutor IN (SELECT idTradutor FROM Tradutor_has_Livros WHERE idLivro = ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idLivro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $tradutores = [];
-        while ($linha = $result->fetch_assoc()) {
-            $tradutores [] = $linha;
-        }
-        if (empty($tradutores)) {
-            $tradutor = false;
-        } else {
-            $tradutor = true;
-        }
-
-        $sql = "SELECT COUNT(idEmprestimoLivro) FROM emprestimoLivro WHERE idLivro = ? AND data_devolucao_real IS NULL";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idLivro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $quantidade_emprestimos = $result->fetch_assoc()['COUNT(idEmprestimoLivro)'];
-        if($quantidade_emprestimos != null){
-            $quantidade_disponivel = $livro['quantidade'] - $quantidade_emprestimos;
-        } else {
-            $quantidade_disponivel = $livro['quantidade'];
-        }
-        $livro['quantidade_disponivel'] = $quantidade_disponivel;
-
-        if($livro['quantidade_disponivel'] <= 0) {
-            $sql = "SELECT MIN(data_devolucao_prevista) AS data_disponivel FROM emprestimoLivro WHERE idLivro = ? AND data_devolucao_real IS NULL";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $idLivro);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $livro['data_disponivel'] = $result->fetch_assoc()['data_disponivel'];
-        }
-
-        $sql = "SELECT H.nota_avaliacao, H.avaliacao, COALESCE(AL.nome, F.nome, B.nome_bibliotecaria) AS nome_usuario
-                FROM Historico_Usuario_Livros H
-                LEFT JOIN CadastroAlunos AL ON H.idUsuario = AL.idUsuario
-                LEFT JOIN CadastroFuncionarios F ON H.idCadastroFuncionarios = F.idCadastroFuncionarios
-                LEFT JOIN CadastroBibliotecarias B ON H.idCadastroBibliotecarias = B.idCadastroBibliotecarias
-                WHERE idLivro = ? AND nota_avaliacao IS NOT NULL";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $idLivro);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $avaliacoes = [];
-        while ($linha = $result->fetch_assoc()) {
-            $avaliacoes [] = $linha;
-        }
-        
-        $conn->close();
-        $stmt->close();
-    } catch (Exception $e) {
-        echo "Erro: " . $e->getMessage();
-    }
-?>
 <body>
 
 <header>
